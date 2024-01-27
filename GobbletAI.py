@@ -2,7 +2,7 @@ import random
 import copy
 
 class GobbletAI:
-    def __init__(self, Game, memory, difficulty_level="intermediate"):
+    def __init__(self, Game, memory, difficulty_level="beginner"):
         self.Game = Game
         self.Mem = memory
         self.difficulty_level = difficulty_level
