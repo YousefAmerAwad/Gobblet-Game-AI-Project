@@ -21,8 +21,24 @@ class GUI(Frame):
                 ('X', -1) : PhotoImage(file="Empty.png")
                 }
         self.Size = 2
+        # Add difficulty level buttons
+        self.beginner_button = Button(self.master, text="Beginner", command=lambda: self.set_difficulty("beginner"))
+        self.beginner_button.place(x=475*self.Size, y=400*self.Size)
+
+        self.intermediate_button = Button(self.master, text="Intermediate", command=lambda: self.set_difficulty("intermediate"))
+        self.intermediate_button.place(x=475*self.Size, y=440*self.Size)
+
+        self.hard_button = Button(self.master, text="Hard", command=lambda: self.set_difficulty("hard"))
+        self.hard_button.place(x=475*self.Size, y=480*self.Size)
+
+        # Initialize the difficulty level
+        self.difficulty_level = "intermediate"  # Default difficulty level
         self.init_Game()
         
+     def set_difficulty(self, level):
+        self.difficulty_level = level
+        self.updateMessage(f"Difficulty set to {level.capitalize()}")
+
     def init_Game(self):
         self.master.title("Gobblet")
         self.Game = GobbletGame(Player('W', "White"), Player('B', "Black"))
