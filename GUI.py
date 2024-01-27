@@ -21,23 +21,27 @@ class GUI(Frame):
                 ('X', -1) : PhotoImage(file="Empty.png")
                 }
         self.Size = 2
-        # Add difficulty level buttons
-        self.beginner_button = Button(self.master, text="Beginner", command=lambda: self.set_difficulty("beginner"))
-        self.beginner_button.place(x=475*self.Size, y=400*self.Size)
-
-        self.intermediate_button = Button(self.master, text="Intermediate", command=lambda: self.set_difficulty("intermediate"))
-        self.intermediate_button.place(x=475*self.Size, y=440*self.Size)
-
-        self.hard_button = Button(self.master, text="Hard", command=lambda: self.set_difficulty("hard"))
-        self.hard_button.place(x=475*self.Size, y=480*self.Size)
-
-        # Initialize the difficulty level
-        self.difficulty_level = "intermediate"  # Default difficulty level
         self.init_Game()
+        self.init_DifficultyButtons()
+
+
+
+    def init_DifficultyButtons(self):
+        beginner_button = Button(self.master, text="Beginner", command=lambda: self.setDifficulty("beginner"))
+        beginner_button.place(x=475 * self.Size, y=400 * self.Size)
+
+        intermediate_button = Button(self.master, text="Intermediate", command=lambda: self.setDifficulty("intermediate"))
+        intermediate_button.place(x=475 * self.Size, y=450 * self.Size)
+
+        advanced_button = Button(self.master, text="Advanced", command=lambda: self.setDifficulty("advanced"))
+        advanced_button.place(x=475 * self.Size, y=500 * self.Size)
+
+        expert_button = Button(self.master, text="Expert", command=lambda: self.setDifficulty("expert"))
+        expert_button.place(x=475 * self.Size, y=550 * self.Size)
         
-     def set_difficulty(self, level):
-        self.difficulty_level = level
-        self.updateMessage(f"Difficulty set to {level.capitalize()}")
+    def setDifficulty(self, difficulty):
+        self.difficulty_level = difficulty
+        self.updateMessage("Difficulty set to: " + difficulty)
 
     def init_Game(self):
         self.master.title("Gobblet")
