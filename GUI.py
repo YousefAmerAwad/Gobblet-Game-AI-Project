@@ -3,6 +3,7 @@ from Board import *
 from GobbletGame import *
 from Player import *
 import GobbletAI
+import time
 
 
 class GUI(Frame):
@@ -22,27 +23,7 @@ class GUI(Frame):
                 }
         self.Size = 2
         self.init_Game()
-        self.init_DifficultyButtons()
-
-
-
-    def init_DifficultyButtons(self):
-        beginner_button = Button(self.master, text="Beginner", command=lambda: self.setDifficulty("beginner"))
-        beginner_button.place(x=475 * self.Size, y=400 * self.Size)
-
-        intermediate_button = Button(self.master, text="Intermediate", command=lambda: self.setDifficulty("intermediate"))
-        intermediate_button.place(x=475 * self.Size, y=450 * self.Size)
-
-        advanced_button = Button(self.master, text="Advanced", command=lambda: self.setDifficulty("advanced"))
-        advanced_button.place(x=475 * self.Size, y=500 * self.Size)
-
-        expert_button = Button(self.master, text="Expert", command=lambda: self.setDifficulty("expert"))
-        expert_button.place(x=475 * self.Size, y=550 * self.Size)
         
-    def setDifficulty(self, difficulty):
-        self.difficulty_level = difficulty
-        self.updateMessage("Difficulty set to: " + difficulty)
-
     def init_Game(self):
         self.master.title("Gobblet")
         self.Game = GobbletGame(Player('W', "White"), Player('B', "Black"))
@@ -78,15 +59,19 @@ class GUI(Frame):
             if (self.Game.checkWin('W') and self.Game.checkWin('B')):
                 if (self.revealed=='W'):
                     self.updateMessage(self.Game.PlayerW.Name + " has won the game!")
+                    self.clearGame()
                     return True
                 else:
                     self.updateMessage(self.Game.PlayerW.Name + " has won the game!")
+                    self.clearGame()
                     return True
             elif (self.Game.checkWin('W')):
                 self.updateMessage(self.Game.PlayerW.Name + " has won the game!")
+                self.clearGame()
                 return True
             elif (self.Game.checkWin('B')):
                 self.updateMessage(self.Game.PlayerB.Name + " has won the game!")
+                self.clearGame()
                 return True
             self.Computer.makeRobMove()
             self.updateInv()
@@ -221,3 +206,7 @@ class GUI(Frame):
             self.row4.append(Button(self.master, text="", command = lambda i=i: self.move(i+1,4)))
             self.row4[i].config(width=10*self.Size, height=5*self.Size)
             self.row4[i].place(x=80*i*self.Size, y=240*self.Size)
+
+
+
+
