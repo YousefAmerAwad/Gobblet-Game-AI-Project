@@ -2,12 +2,20 @@ import random
 import copy
 
 class GobbletAI:
-    def __init__(self, Game, memory):
+    def __init__(self, Game, memory, difficulty_level="intermediate"):
         self.Game = Game
         self.Mem = memory
+        self.difficulty_level = difficulty_level
         
     def makeRobMove(self):
-        self.nLookAhead(1)
+        if self.difficulty_level == "beginner":
+            self.nLookAhead(1)
+        elif self.difficulty_level == "intermediate":
+            self.nLookAhead(2)
+        elif self.difficulty_level == "hard":
+            self.nLookAhead(3)
+        else:
+            raise ValueError("Invalid difficulty level")
         
     def nLookAhead(self, n):
         allMoves = self.moves()
