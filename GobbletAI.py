@@ -12,8 +12,10 @@ class GobbletAI:
             self.nLookAhead(1)
         elif self.difficulty_level == "intermediate":
             self.nLookAhead(2)
-        elif self.difficulty_level == "hard":
-            self.nLookAhead(3)
+        elif self.difficulty_level == "advanced":
+            self.nLookAhead(4)
+        elif self.difficulty_level == "expert":
+            self.nLookAhead(6)
         else:
             raise ValueError("Invalid difficulty level")
         
